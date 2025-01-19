@@ -12,7 +12,6 @@ export const GET = async (request: NextRequest) => {
   const baseUrl = `${protocol}://${host}`;
 
   try {
-    const browser = await puppeteer.launch();
     const browser = await puppeteer.launch({
       args: [
         '--no-sandbox',
