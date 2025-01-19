@@ -13,12 +13,35 @@ export const GET = async (request: NextRequest) => {
 
   try {
     const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--font-render-hinting=none',
+      ],
+      env: {
+        ...process.env,
+        LANG: 'en_US.UTF-8',
+      },
+    });
+
     const page = await browser.newPage();
 
-    // Navigate to the page
-    await page.goto(`${baseUrl}`);
+    // Set viewport for consistent rendering
+    await page.setViewport({
+      width: 1200,
+      height: 1600,
+      deviceScaleFactor: 1,
+    });
 
-    // Generate PDF
+    // Navigate to the page with a timeout
+    await page.goto(`${baseUrl}`, {
+      waitUntil: 'networkidle0',
+      timeout: 10000,
+    });
+
+    // Generate PDF with specific settings
     const pdfBuffer = await page.pdf({
       format: 'A4',
       printBackground: true,
@@ -34,7 +57,7 @@ export const GET = async (request: NextRequest) => {
       status: 200,
     });
   } catch (error) {
-    const errorMsg = `Error generating PDF from ${baseUrl}: ${JSON.stringify(
+    const errorMsg = `Error generating PDF from '${baseUrl}': ${JSON.stringify(
       error
     )}`;
     console.error(errorMsg);
