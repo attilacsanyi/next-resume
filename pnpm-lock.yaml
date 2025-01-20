@@ -12,13 +12,13 @@ importers:
         specifier: 119.0.0
         version: 119.0.0
       chrome-aws-lambda:
-        specifier: 2.0.0
+        specifier: ^2.0.0
         version: 2.0.0(puppeteer-core@2.0.0)
       next:
         specifier: 15.1.4
         version: 15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       puppeteer-core:
-        specifier: 2.0.0
+        specifier: ^2.0.0
         version: 2.0.0
       react:
         specifier: 19.0.0
@@ -36,6 +36,12 @@ importers:
       '@types/node':
         specifier: '20'
         version: 20.17.14
+      '@types/puppeteer':
+        specifier: ^2.0.0
+        version: 2.1.8
+      '@types/puppeteer-core':
+        specifier: ^2.0.0
+        version: 2.1.0
       '@types/react':
         specifier: '19'
         version: 19.0.7
@@ -48,6 +54,9 @@ importers:
       eslint-config-next:
         specifier: 15.1.5
         version: 15.1.5(eslint@9.18.0(jiti@1.21.7))(typescript@5.7.3)
+      i:
+        specifier: ^0.3.7
+        version: 0.3.7
       postcss:
         specifier: '8'
         version: 8.5.1
@@ -61,7 +70,7 @@ importers:
         specifier: 0.6.9
         version: 0.6.9(prettier-plugin-organize-imports@4.1.0(prettier@3.4.2)(typescript@5.7.3))(prettier@3.4.2)
       puppeteer:
-        specifier: 2.0.0
+        specifier: ^2.0.0
         version: 2.0.0
       tailwindcss:
         specifier: 3.4.1
@@ -361,6 +370,12 @@ packages:
 
   '@types/node@20.17.14':
     resolution: {integrity: sha512-w6qdYetNL5KRBiSClK/KWai+2IMEJuAj+EujKCumalFOwXtvOXaEan9AuwcRID2IcOIAWSIfR495hBtgKlx2zg==}
+
+  '@types/puppeteer-core@2.1.0':
+    resolution: {integrity: sha512-q1s+x/3HuXQN1Xo9eVhCfRJ2SNfHA/a641iSZQRNnRH55t4jX7TsNWxQN0drLqwbz/Kp8nodJ5rTNYEIKX//gg==}
+
+  '@types/puppeteer@2.1.8':
+    resolution: {integrity: sha512-sFyFD1yIlBwg8jpCbmi4ngecMI6Uw6iEKyUUglFXOiaZQHTvE8oftAWKK7E5sac1Uce+7uR5iVKWDLKDxmjcSA==}
 
   '@types/react-dom@19.0.3':
     resolution: {integrity: sha512-0Knk+HJiMP/qOZgMyNFamlIjw9OFCsyC2ZbigmEEyXXixgre6IQpm/4V+r3qH4GC1JPvRJKInw+on2rV6YZLeA==}
@@ -1056,6 +1071,10 @@ packages:
   https-proxy-agent@3.0.1:
     resolution: {integrity: sha512-+ML2Rbh6DAuee7d07tYGEKOEi2voWPUGan+ExdPbPW6Z3svq+JCqr0v8WmKPOkz1vOVykPCBSuobe7G8GJUtVg==}
     engines: {node: '>= 4.5.0'}
+
+  i@0.3.7:
+    resolution: {integrity: sha512-FYz4wlXgkQwIPqhzC5TdNMLSE5+GS1IIDJZY/1ZiEPCT2S3COUVZeT5OW4BmW4r5LHLQuOosSwsvnroG9GR59Q==}
+    engines: {node: '>=0.4'}
 
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
@@ -2223,6 +2242,14 @@ snapshots:
     dependencies:
       undici-types: 6.19.8
 
+  '@types/puppeteer-core@2.1.0':
+    dependencies:
+      '@types/puppeteer': 2.1.8
+
+  '@types/puppeteer@2.1.8':
+    dependencies:
+      '@types/node': 20.17.14
+
   '@types/react-dom@19.0.3(@types/react@19.0.7)':
     dependencies:
       '@types/react': 19.0.7
@@ -3132,6 +3159,8 @@ snapshots:
       debug: 3.2.7
     transitivePeerDependencies:
       - supports-color
+
+  i@0.3.7: {}
 
   ignore@5.3.2: {}
 

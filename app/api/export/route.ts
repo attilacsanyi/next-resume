@@ -26,6 +26,8 @@ export const GET = async (request: NextRequest) => {
       // For local development, use puppeteer instead of puppeteer-core
       const puppeteer = await import('puppeteer');
       browser = await puppeteer.default.launch({
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
         headless: 'new',
         args: ['--no-sandbox'],
       });
@@ -34,6 +36,8 @@ export const GET = async (request: NextRequest) => {
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,
         executablePath: await chromium.executablePath(),
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
         headless: chromium.headless,
         ignoreHTTPSErrors: true,
       });
