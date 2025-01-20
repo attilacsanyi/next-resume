@@ -1,11 +1,13 @@
+import chromium from '@sparticuz/chromium';
 import { NextRequest, NextResponse } from 'next/server';
-import puppeteer from 'puppeteer';
+import puppeteerCore from 'puppeteer-core';
 
 const resumeFileName = 'attila-csanyi-resume.pdf';
+
 /**
  * Export the root page as a PDF.
  *
- * @param request https://www.browserless.io/blog/puppeteer-netlify
+ * @param request The incoming request
  * @returns the PDF as a response
  */
 export const GET = async (request: NextRequest) => {
@@ -16,41 +18,40 @@ export const GET = async (request: NextRequest) => {
       : 'http';
   const baseUrl = `${protocol}://${host}`;
 
+  let browser;
   try {
-    // const browser =
-    //   await puppeteer.launch(/* {
-    //   args: [
-    //     '--no-sandbox',
-    //     '--disable-setuid-sandbox',
-    //     '--disable-dev-shm-usage',
-    //     '--font-render-hinting=none',
-    //   ],
-    //   env: {
-    //     ...process.env,
-    //     LANG: 'en_US.UTF-8',
-    //   },
-    // } */);
+    const isDev = process.env.NODE_ENV === 'development';
 
-    const browser = await puppeteer.connect({
-      browserWSEndpoint: `wss://chrome.browserless.io?--window-size=1200,900`,
-    });
+    if (isDev) {
+      // For local development, use puppeteer instead of puppeteer-core
+      const puppeteer = await import('puppeteer');
+      browser = await puppeteer.default.launch({
+        headless: 'new',
+        args: ['--no-sandbox'],
+      });
+    } else {
+      browser = await puppeteerCore.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath(),
+        headless: chromium.headless,
+        ignoreHTTPSErrors: true,
+      });
+    }
 
     const page = await browser.newPage();
 
-    // Set viewport for consistent rendering
     await page.setViewport({
       width: 1200,
       height: 1600,
       deviceScaleFactor: 1,
     });
 
-    // Navigate to the page with a timeout
     await page.goto(`${baseUrl}`, {
       waitUntil: 'networkidle0',
       timeout: 10000,
     });
 
-    // Generate PDF with specific settings
     const pdfBuffer = await page.pdf({
       format: 'A4',
       printBackground: true,
@@ -66,6 +67,9 @@ export const GET = async (request: NextRequest) => {
       status: 200,
     });
   } catch (error: unknown) {
+    if (browser) {
+      await browser.close();
+    }
     const errorMsg = `Error generating PDF from '${baseUrl}': ${JSON.stringify(
       error
     )}`;
