@@ -59,10 +59,13 @@ export const GET = async (request: NextRequest) => {
 
     await browser.close();
 
-    return new NextResponse(pdfBuffer, {
+    const base64Pdf = pdfBuffer.toString('base64');
+
+    return new NextResponse(base64Pdf, {
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': `attachment; filename="${resumeFileName}"`,
+        'Content-Transfer-Encoding': 'binary',
       },
       status: 200,
     });
