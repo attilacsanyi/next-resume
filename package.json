@@ -13,6 +13,7 @@
   "dependencies": {
     "@sparticuz/chromium": "119.0.0",
     "chrome-aws-lambda": "^2.0.0",
+    "lambdafs": "1.0.0",
     "next": "15.1.4",
     "puppeteer-core": "^2.0.0",
     "react": "19.0.0",
