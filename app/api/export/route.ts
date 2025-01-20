@@ -1,8 +1,13 @@
-import { NextRequest } from 'next/server';
-import puppeteer from 'puppeteer';
+import { NextRequest, NextResponse } from 'next/server';
+import puppeteer from 'puppeteer-core';
 
 const resumeFileName = 'attila-csanyi-resume.pdf';
-
+/**
+ * Export the root page as a PDF.
+ *
+ * @param request https://www.browserless.io/blog/puppeteer-netlify
+ * @returns the PDF as a response
+ */
 export const GET = async (request: NextRequest) => {
   const host = request.headers.get('host');
   const protocol =
@@ -12,17 +17,22 @@ export const GET = async (request: NextRequest) => {
   const baseUrl = `${protocol}://${host}`;
 
   try {
-    const browser = await puppeteer.launch({
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--font-render-hinting=none',
-      ],
-      env: {
-        ...process.env,
-        LANG: 'en_US.UTF-8',
-      },
+    // const browser =
+    //   await puppeteer.launch(/* {
+    //   args: [
+    //     '--no-sandbox',
+    //     '--disable-setuid-sandbox',
+    //     '--disable-dev-shm-usage',
+    //     '--font-render-hinting=none',
+    //   ],
+    //   env: {
+    //     ...process.env,
+    //     LANG: 'en_US.UTF-8',
+    //   },
+    // } */);
+
+    const browser = await puppeteer.connect({
+      browserWSEndpoint: `wss://chrome.browserless.io?--window-size=1200,900`,
     });
 
     const page = await browser.newPage();
@@ -48,18 +58,18 @@ export const GET = async (request: NextRequest) => {
 
     await browser.close();
 
-    return new Response(pdfBuffer, {
+    return new NextResponse(pdfBuffer, {
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': `attachment; filename="${resumeFileName}"`,
       },
       status: 200,
     });
-  } catch (error) {
+  } catch (error: unknown) {
     const errorMsg = `Error generating PDF from '${baseUrl}': ${JSON.stringify(
       error
     )}`;
     console.error(errorMsg);
-    return Response.json({ error: errorMsg }, { status: 500 });
+    return NextResponse.json({ error: errorMsg }, { status: 500 });
   }
 };
