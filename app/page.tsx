@@ -9,15 +9,18 @@ export default function Home() {
           className="cursor-pointer"
           href="/api/export"
         >
-          <Image
-            alt="Next.js logo"
-            className="dark:invert"
-            height={38}
-            src="/next.svg"
-            width={180}
-            priority
-          />
+          <span className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:from-blue-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            Download as PDF
+          </span>
         </Link>
+        <Image
+          alt="Next.js logo"
+          className="dark:invert"
+          height={38}
+          src="/next.svg"
+          width={180}
+          priority
+        />
         <ol className="list-inside list-decimal text-center font-[family-name:var(--font-geist-mono)] text-sm sm:text-left">
           <li className="mb-2">
             Get started by editing{' '}
