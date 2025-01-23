@@ -1,3 +1,4 @@
+import TailwindDemo from '@/components/tailwind-demo';
 import Image from 'next/image';
 import Link from 'next/link';
 
