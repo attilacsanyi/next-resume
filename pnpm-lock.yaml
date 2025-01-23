@@ -20,9 +20,6 @@ importers:
       next:
         specifier: 15.1.4
         version: 15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      puppeteer-core:
-        specifier: ^2.0.0
-        version: 2.0.0
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -73,8 +70,8 @@ importers:
         specifier: 0.6.9
         version: 0.6.9(prettier-plugin-organize-imports@4.1.0(prettier@3.4.2)(typescript@5.7.3))(prettier@3.4.2)
       puppeteer:
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: 24.1.0
+        version: 24.1.0(typescript@5.7.3)
       tailwindcss:
         specifier: 3.4.1
         version: 3.4.1
