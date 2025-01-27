@@ -1,0 +1,7 @@
+query resumeCollection($isPreview: Boolean = false) {
+  resumeCollection(limit: 2, preview: $isPreview) {
+    items {
+      ...Resume
+    }
+  }
+}

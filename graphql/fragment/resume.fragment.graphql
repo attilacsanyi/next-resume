@@ -1,0 +1,8 @@
+fragment Resume on Resume {
+  sys {
+    ...Sys
+  }
+  name
+  json
+  isActive
+}
