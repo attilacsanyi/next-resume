@@ -1,18 +1,20 @@
 import { resumeSchema } from '@/features/resume/resume.types';
+import { ZodError } from 'zod';
 
 export const validateResumeJSON = (resumeData: object) => {
-  const validateResume = resumeSchema.safeParse(resumeData);
+  try {
+    const validateResume = resumeSchema.parse(resumeData);
+    return validateResume;
+  } catch (error) {
+    if (error instanceof ZodError) {
+      // Collect and format all validation errors
+      const errorDetails = error.errors
+        .map(err => `${err.path.join('.')}: ${err.message}`)
+        .join('\n');
 
-  if (!validateResume.success) {
-    const errors = validateResume.error.flatten().fieldErrors;
-    Object.entries(errors).forEach(([field, messages]) => {
-      console.error(
-        `Field "${field}" has validation errors:`,
-        messages?.join(', ')
-      );
-    });
-    throw new Error('Invalid resume data');
+      throw new Error(`Invalid resume data!\n\n ${errorDetails}`);
+    }
+
+    throw error;
   }
-
-  return validateResume.data;
 };
