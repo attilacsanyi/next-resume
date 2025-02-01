@@ -1,3 +1,4 @@
+import { env } from '@/env';
 import { NextRequest } from 'next/server';
 import puppeteer from 'puppeteer';
 
@@ -5,7 +6,7 @@ export const GET = async (request: NextRequest) => {
   try {
     const host = request.headers.get('host');
     const protocol =
-      process.env.NODE_ENV === 'production' && host !== 'localhost:3000'
+      env.NODE_ENV === 'production' && host !== 'localhost:3000'
         ? 'https'
         : 'http';
     const baseUrl = `${protocol}://${host}`;

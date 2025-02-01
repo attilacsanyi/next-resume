@@ -1,3 +1,4 @@
+import { env } from '@/env';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Link from 'next/link';
@@ -23,7 +24,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isDev = process.env.NODE_ENV !== 'production';
+  const isDev = env.NODE_ENV !== 'production';
   return (
     <html lang="en">
       <body

@@ -1,4 +1,5 @@
 import TailwindDemo from '@/components/tailwind-demo';
+import { env } from '@/env';
 import { getResume } from '@/features/contentful/contentful.utils';
 import Image from 'next/image';
 
@@ -18,6 +19,7 @@ export default async function Home() {
           width={180}
           priority
         />
+        <p>{env.CONTENTFUL_ENVIRONMENT}</p>
         <ol className="list-inside list-decimal text-center font-[family-name:var(--font-geist-mono)] text-sm sm:text-left">
           <li className="mb-2">
             {name}
