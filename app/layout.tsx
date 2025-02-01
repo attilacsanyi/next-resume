@@ -34,7 +34,7 @@ export default function RootLayout({
             className="cursor-pointer"
             href="/api/export"
           >
-            <button className="absolute left-2 top-2 inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:from-blue-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 print:hidden">
+            <button className="absolute left-2 top-2 inline-flex items-center justify-center rounded-lg bg-linear-to-r from-blue-500 to-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:from-blue-600 hover:to-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 print:hidden">
               Download as PDF
             </button>
           </Link>
