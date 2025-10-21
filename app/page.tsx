@@ -4,9 +4,11 @@ import { getResume } from '@/features/contentful/contentful.utils';
 import Image from 'next/image';
 
 export default async function Home() {
+  const isDev = env.NODE_ENV !== 'production';
   const {
     profile: { name, location },
-  } = await getResume();
+    experiences,
+  } = await getResume(isDev);
 
   return (
     <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20">
