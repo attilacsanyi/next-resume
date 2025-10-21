@@ -21,7 +21,6 @@ export default async function Home() {
           width={180}
           priority
         />
-        <p>{env.CONTENTFUL_ENVIRONMENT}</p>
         <ol className="list-inside list-decimal text-center font-[family-name:var(--font-geist-mono)] text-sm sm:text-left">
           <li className="mb-2">
             {name}
