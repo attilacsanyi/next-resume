@@ -410,6 +410,7 @@ export enum EntryOrder {
 }
 
 export enum ImageFormat {
+  /** AVIF image format. */
   Avif = 'AVIF',
   /** JPG image format. */
   Jpg = 'JPG',
@@ -697,6 +698,7 @@ export enum PostOrder {
 export type Query = {
   __typename?: 'Query';
   _node?: Maybe<_Node>;
+  _nodes: Array<Maybe<_Node>>;
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
   author?: Maybe<Author>;
@@ -710,6 +712,12 @@ export type Query = {
 
 export type Query_NodeArgs = {
   id: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type Query_NodesArgs = {
+  ids: Array<Scalars['ID']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -793,7 +801,7 @@ export type ResourceSys = {
   urn: Scalars['String']['output'];
 };
 
-/** Content type storing my resume as json based on my https://github.com/attilacsanyi/next-resume project [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
+/** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
 export type Resume = Entry &
   _Node & {
     __typename?: 'Resume';
@@ -806,22 +814,22 @@ export type Resume = Entry &
     sys: Sys;
   };
 
-/** Content type storing my resume as json based on my https://github.com/attilacsanyi/next-resume project [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
+/** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
 export type ResumeIsActiveArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** Content type storing my resume as json based on my https://github.com/attilacsanyi/next-resume project [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
+/** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
 export type ResumeJsonArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** Content type storing my resume as json based on my https://github.com/attilacsanyi/next-resume project [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
+/** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
 export type ResumeLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-/** Content type storing my resume as json based on my https://github.com/attilacsanyi/next-resume project [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
+/** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
 export type ResumeNameArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
@@ -945,6 +953,13 @@ export type SysFilter = {
 export type TaxonomyConcept = {
   __typename?: 'TaxonomyConcept';
   id?: Maybe<Scalars['String']['output']>;
+};
+
+export type TimelineFilterInput = {
+  /** Preview content starting from a given release date */
+  release_lte?: InputMaybe<Scalars['String']['input']>;
+  /** Preview content starting from a given timestamp */
+  timestamp_lte?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type _Node = {
