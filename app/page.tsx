@@ -7,7 +7,6 @@ export default async function Home() {
   const isDev = env.NODE_ENV !== 'production';
   const {
     profile: { name, location },
-    experiences,
   } = await getResume(isDev);
 
   return (
