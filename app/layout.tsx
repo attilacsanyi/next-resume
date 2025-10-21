@@ -31,14 +31,20 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {isDev && (
-          <Link
-            className="cursor-pointer"
-            href="/api/export"
-          >
-            <button className="absolute top-2 left-2 inline-flex items-center justify-center rounded-lg bg-linear-to-r from-blue-500 to-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:from-blue-600 hover:to-indigo-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-hidden print:hidden">
-              Download as PDF
-            </button>
-          </Link>
+          <div className="flex justify-between p-2 print:hidden">
+            <Link
+              className="cursor-pointer"
+              href="/api/export"
+            >
+              <button className="rounded-lg bg-linear-to-r from-blue-500 to-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:from-blue-600 hover:to-indigo-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-hidden">
+                Download as PDF
+              </button>
+            </Link>
+            <div className="flex gap-2">
+              <p>Contentful: {env.CONTENTFUL_ENVIRONMENT}</p>
+              <p>Node: {env.NODE_ENV}</p>
+            </div>
+          </div>
         )}
         {children}
       </body>
