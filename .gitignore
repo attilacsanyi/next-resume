@@ -45,4 +45,7 @@ next-env.d.ts
 .history
 
 # ai
+ai
+
+# Cursor
 .cursorrules
