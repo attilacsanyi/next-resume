@@ -96,10 +96,22 @@ export const learningSchema = z.object({
 });
 export type Learning = z.infer<typeof learningSchema>;
 
+export const developmentSchema = z.object({
+  name: z.string(),
+  description: z.string(),
+  dates: periodSchema,
+  tags: z.array(z.string()),
+  github: z.string().url(),
+  url: z.string().url(),
+});
+
+export type Development = z.infer<typeof developmentSchema>;
+
 export const resumeSchema = z.object({
   profile: profileSchema,
   learnings: z.array(learningSchema),
   experiences: z.array(experienceSchema),
   educations: z.array(educationSchema),
+  developments: z.array(developmentSchema),
 });
 export type Resume = z.infer<typeof resumeSchema>;
