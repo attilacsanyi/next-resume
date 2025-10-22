@@ -91,6 +91,8 @@ export const learningSchema = z.object({
   title: z.string(),
   date: z.string().date(),
   certificate: z.string().optional(),
+  percentage: z.number().optional(),
+  note: z.string().optional(),
 });
 export type Learning = z.infer<typeof learningSchema>;
 
