@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --fix",
+    "lint": "eslint --fix .",
     "format": "prettier --write .",
     "ci": "npm run lint && npm run format",
     "codegen": "graphql-codegen --config codegen.ts --require dotenv/config",
@@ -18,14 +18,13 @@
     "contentful": "11.4.4",
     "graphql-request": "6.0.0",
     "graphql-tag": "2.12.6",
-    "next": "15.1.4",
+    "next": "16.0.1",
     "puppeteer": "24.1.0",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "zod": "3.24.1"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "3",
     "@graphql-codegen/add": "5.0.3",
     "@graphql-codegen/cli": "5.0.3",
     "@graphql-codegen/client-preset": "4.5.1",
@@ -36,15 +35,21 @@
     "@graphql-codegen/typescript-react-apollo": "4.3.2",
     "@tailwindcss/postcss": "4.1.15",
     "@types/node": "20",
-    "@types/react": "19",
-    "@types/react-dom": "19",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
     "eslint": "9",
-    "eslint-config-next": "15.1.5",
+    "eslint-config-next": "16.0.1",
     "postcss": "8",
     "prettier": "3.4.2",
     "prettier-plugin-organize-imports": "4.1.0",
     "prettier-plugin-tailwindcss": "0.7.1",
     "tailwindcss": "4.1.15",
     "typescript": "5"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.2.2",
+      "@types/react-dom": "19.2.2"
+    }
   }
 }
