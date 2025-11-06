@@ -34,6 +34,10 @@ export const profileSchema = z.object({
   socials: socialsSchema,
   languages: z.array(z.string()),
   summary: z.array(z.string()),
+  quote: z.object({
+    by: z.string(),
+    text: z.string(),
+  }),
 });
 export type Profile = z.infer<typeof profileSchema>;
 
