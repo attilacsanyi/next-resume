@@ -1,4 +1,3 @@
-/* eslint-disable */
 import * as Apollo from '@apollo/client';
 import { gql } from '@apollo/client';
 import * as types from './contentful.types';
