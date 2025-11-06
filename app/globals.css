@@ -40,3 +40,40 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@media print {
+  @page {
+    size: A4;
+  }
+
+  html,
+  body {
+    height: auto;
+    overflow: visible;
+  }
+
+  /* Ensure links are visible in print */
+  a[href]::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.75em;
+    color: var(--foreground);
+  }
+
+  /* Hide interactive elements */
+  button,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Optimize colors for print */
+  * {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Remove shadows and effects */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
