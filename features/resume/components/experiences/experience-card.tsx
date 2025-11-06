@@ -92,7 +92,7 @@ export const ExperienceCard = ({ experience }: ExperienceCardProps) => {
           <h4 className="text-foreground/60 mb-2 text-sm font-semibold tracking-wide uppercase">
             Key Achievements
           </h4>
-          <ul className="list-outside list-disc space-y-2 pl-6">
+          <ul className="marker:text-foreground/10 list-outside list-disc space-y-2 pl-6 marker:text-xl">
             {achievements.map((achievement, index) => (
               <li
                 key={index}
