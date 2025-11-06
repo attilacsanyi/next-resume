@@ -10,6 +10,7 @@ export const locationSchema = z.object({
   city: z.string().optional(),
   country: z.string().optional(),
   region: z.string().optional(),
+  continent: z.string().optional(),
 });
 export type Location = z.infer<typeof locationSchema>;
 
