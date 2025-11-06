@@ -1,7 +1,9 @@
-import { client } from '@/features/contentful/apollo.client';
-import { validateResumeJSON } from '@/features/resume/resume.util';
-import { ResumeCollectionDocument } from './contentful.hooks';
-import type { ResumeCollectionQuery } from './contentful.types';
+import {
+  client,
+  ResumeCollectionDocument,
+  type ResumeCollectionQuery,
+} from '@/features/contentful';
+import { validateResumeJSON } from './resume.util';
 
 export const getResume = async (preview = false) => {
   const { data } = await client.query<ResumeCollectionQuery>({
