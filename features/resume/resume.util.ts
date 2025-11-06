@@ -1,5 +1,5 @@
-import { resumeSchema } from '@/features/resume/resume.types';
 import { ZodError } from 'zod';
+import { resumeSchema } from './resume.types';
 
 export const validateResumeJSON = (resumeData: object) => {
   try {
