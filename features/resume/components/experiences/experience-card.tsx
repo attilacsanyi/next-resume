@@ -81,12 +81,13 @@ export const ExperienceCard = ({ experience }: ExperienceCardProps) => {
           </time>
         </div>
         {company.description && (
-          <p className="text-foreground/70 mt-2 text-sm">
+          <p className="text-foreground/70 mt-2 pl-6 text-sm">
             {company.description}
           </p>
         )}
       </div>
 
+      {/* Key Achievements */}
       {achievements.length > 0 && (
         <div className="mb-4">
           <h4 className="text-foreground/60 mb-2 text-sm font-semibold tracking-wide uppercase">
@@ -105,12 +106,13 @@ export const ExperienceCard = ({ experience }: ExperienceCardProps) => {
         </div>
       )}
 
+      {/* Technologies */}
       {technologies.length > 0 && (
         <div className="mb-4">
           <h4 className="text-foreground/60 mb-2 text-sm font-semibold tracking-wide uppercase">
             Technologies
           </h4>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 pl-6">
             {sortTechnologiesByType(technologies).map((technology, index) => (
               <TechnologyTag
                 key={index}
@@ -121,6 +123,7 @@ export const ExperienceCard = ({ experience }: ExperienceCardProps) => {
         </div>
       )}
 
+      {/* Recommendations */}
       {recommendations && recommendations.length > 0 && (
         <div className="mt-4">
           <h4 className="text-foreground/60 mb-3 text-sm font-semibold tracking-wide uppercase">
