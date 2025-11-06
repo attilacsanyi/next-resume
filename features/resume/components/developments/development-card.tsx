@@ -47,22 +47,22 @@ export const DevelopmentCard = ({ development }: DevelopmentCardProps) => {
       )}
       {development.github || development.url ? (
         <div className="flex flex-wrap gap-3">
-            <a
-              className="text-foreground/80 hover:text-foreground text-sm underline-offset-4 transition-colors hover:underline print:no-underline"
-              href={development.github}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              GitHub
-            </a>
-            <a
-              className="text-foreground/80 hover:text-foreground text-sm underline-offset-4 transition-colors hover:underline print:no-underline"
-              href={development.url}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Live Demo
-            </a>
+          <a
+            className="text-foreground/80 hover:text-foreground text-sm underline-offset-4 transition-colors hover:underline print:no-underline"
+            href={development.github}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            GitHub
+          </a>
+          <a
+            className="text-foreground/80 hover:text-foreground text-sm underline-offset-4 transition-colors hover:underline print:no-underline"
+            href={development.url}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Live Demo
+          </a>
         </div>
       ) : null}
     </article>
