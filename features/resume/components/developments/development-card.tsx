@@ -47,7 +47,6 @@ export const DevelopmentCard = ({ development }: DevelopmentCardProps) => {
       )}
       {development.github || development.url ? (
         <div className="flex flex-wrap gap-3">
-          {development.github && (
             <a
               className="text-foreground/80 hover:text-foreground text-sm underline-offset-4 transition-colors hover:underline print:no-underline"
               href={development.github}
@@ -56,8 +55,6 @@ export const DevelopmentCard = ({ development }: DevelopmentCardProps) => {
             >
               GitHub
             </a>
-          )}
-          {development.url && (
             <a
               className="text-foreground/80 hover:text-foreground text-sm underline-offset-4 transition-colors hover:underline print:no-underline"
               href={development.url}
@@ -66,7 +63,6 @@ export const DevelopmentCard = ({ development }: DevelopmentCardProps) => {
             >
               Live Demo
             </a>
-          )}
         </div>
       ) : null}
     </article>
