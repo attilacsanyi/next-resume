@@ -31,17 +31,18 @@ export const RecommendationCard = ({
           {formatDate(recommendation.date)}
         </time>
       </div>
-      <ul className="mb-3 space-y-2">
-        {recommendation.feedback.map((feedback, index) => (
-          <li
-            key={index}
-            className="text-foreground/80 flex items-start gap-2 text-sm"
-          >
-            <span className="text-foreground/60 mt-1.5 shrink-0">•</span>
-            <span>{feedback}</span>
-          </li>
-        ))}
-      </ul>
+      <blockquote className="border-primary text-foreground/80 border-l-foreground/10 border-l-4 pl-4 italic">
+        <ul className="mb-3 list-outside list-none space-y-2">
+          {recommendation.feedback.map((feedback, index) => (
+            <li
+              key={index}
+              className="text-foreground/80 text-sm"
+            >
+              {feedback}
+            </li>
+          ))}
+        </ul>
+      </blockquote>
       <a
         className="text-foreground/80 hover:text-foreground text-sm underline-offset-4 transition-colors hover:underline print:no-underline"
         href={recommendation.profile.url}
