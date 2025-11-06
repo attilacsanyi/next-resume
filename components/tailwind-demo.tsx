@@ -3,13 +3,13 @@ import Image from 'next/image';
 const TailwindDemo = () => {
   return (
     <div className="flex flex-col gap-8 rounded-3xl bg-linear-to-br from-purple-600 via-pink-500 to-orange-400 p-8 shadow-2xl">
-      <div className="flex flex-col items-center gap-6 rounded-2xl bg-white/10 p-6 backdrop-blur-xs md:flex-row md:gap-8">
+      <div className="flex flex-col items-center gap-6 rounded-2xl bg-white/10 p-6 backdrop-blur-sm md:flex-row md:gap-8">
         <div className="transform transition-transform hover:scale-105">
           <Image
             alt="Demo image"
             className="rounded-lg border-4 border-white/20 shadow-xl"
             height={192}
-            src="/vercel.svg"
+            src="/icon.svg"
             width={192}
           />
         </div>

@@ -18,6 +18,7 @@ const Home = async () => {
   return (
     <main className="min-h-screen">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        {/* <TailwindDemo /> */}
         <ProfileSection profile={profile} />
         <ExperiencesSection experiences={experiences} />
         <LearningsSection learnings={learnings} />
