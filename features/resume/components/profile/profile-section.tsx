@@ -33,7 +33,7 @@ export const ProfileSection = ({ profile }: ProfileSectionProps) => {
 
           {/* Profile quote */}
           <div className="mt-8">
-            <blockquote className="border-primary text-foreground/80 border-l-4 pl-4 italic">
+            <blockquote className="border-primary text-foreground/80 border-l-foreground/10 border-l-4 pl-4 italic">
               “{profile.quote.text}”
             </blockquote>
             <div className="mt-2 flex items-center gap-2">
