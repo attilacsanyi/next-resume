@@ -92,14 +92,13 @@ export const ExperienceCard = ({ experience }: ExperienceCardProps) => {
           <h4 className="text-foreground/60 mb-2 text-sm font-semibold tracking-wide uppercase">
             Key Achievements
           </h4>
-          <ul className="space-y-2">
+          <ul className="list-outside list-disc space-y-2 pl-6">
             {achievements.map((achievement, index) => (
               <li
                 key={index}
-                className="text-foreground/80 flex items-start gap-2 text-sm"
+                className="text-foreground/80 text-sm"
               >
-                <span className="text-foreground/60 mt-1.5 shrink-0">•</span>
-                <span>{achievement}</span>
+                {achievement}
               </li>
             ))}
           </ul>
