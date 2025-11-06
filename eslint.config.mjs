@@ -42,6 +42,9 @@ const eslintConfig = [
       'build/**',
       'next-env.d.ts',
       '.history/**',
+      // Ignore generated contentful types and hooks
+      'features/contentful/contentful.types.ts',
+      'features/contentful/contentful.hooks.ts',
     ],
   },
 ];
