@@ -1,26 +1,48 @@
+import { SectionWrapper } from '@/features/resume/components/section-wrapper';
 import type { Experience } from '../../resume.types';
+import { prepareSectionData } from '../../section.util';
 import { ExperienceCard } from './experience-card';
 
 type ExperiencesSectionProps = {
   experiences: Experience[];
+  recentYears: number;
 };
 
 export const ExperiencesSection = ({
   experiences,
+  recentYears,
 }: ExperiencesSectionProps) => {
-  if (experiences.length === 0) return null;
+  const sectionData = prepareSectionData(
+    experiences,
+    recentYears,
+    experience => new Date(experience.position.dates.start),
+    experience =>
+      experience.position.dates.end
+        ? new Date(experience.position.dates.end)
+        : new Date()
+  );
+
+  if (!sectionData) return null;
+
+  const { filteredItems: filteredExperiences, subtitle } = sectionData;
+  const itemCount = filteredExperiences.length;
 
   return (
-    <section className="mb-12">
-      <h2 className="mb-6 text-2xl font-semibold">Professional Experience</h2>
-      <div className="space-y-6">
-        {experiences.map((experience, index) => (
-          <ExperienceCard
-            key={index}
-            experience={experience}
-          />
-        ))}
-      </div>
-    </section>
+    <SectionWrapper
+      columns={{
+        mobile: 1,
+        tablet: 1,
+        desktop: itemCount >= 2 ? 2 : itemCount,
+      }}
+      subtitle={subtitle}
+      title="Professional Experience"
+    >
+      {filteredExperiences.map((experience, index) => (
+        <ExperienceCard
+          key={index}
+          experience={experience}
+        />
+      ))}
+    </SectionWrapper>
   );
 };

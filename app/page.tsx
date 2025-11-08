@@ -6,12 +6,24 @@ import {
   LearningsSection,
   ProfileSection,
   getResume,
+  parseRecentYears,
 } from '@/features/resume';
 
+/**
+ * Revalidate the page every 5 minutes
+ */
 export const revalidate = 300;
 
-const Home = async () => {
+type HomeProps = {
+  searchParams: Promise<{ recentYears?: string }>;
+};
+
+const Home = async ({ searchParams }: HomeProps) => {
   const isDev = env.NODE_ENV !== 'production';
+  const params = await searchParams;
+
+  const recentYears = parseRecentYears(params.recentYears);
+
   const { profile, experiences, learnings, developments, educations } =
     await getResume(isDev);
 
@@ -20,9 +32,18 @@ const Home = async () => {
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* <TailwindDemo /> */}
         <ProfileSection profile={profile} />
-        <ExperiencesSection experiences={experiences} />
-        <LearningsSection learnings={learnings} />
-        <DevelopmentsSection developments={developments} />
+        <ExperiencesSection
+          experiences={experiences}
+          recentYears={recentYears}
+        />
+        <LearningsSection
+          learnings={learnings}
+          recentYears={recentYears}
+        />
+        <DevelopmentsSection
+          developments={developments}
+          recentYears={recentYears}
+        />
         <EducationsSection educations={educations} />
       </div>
     </main>
