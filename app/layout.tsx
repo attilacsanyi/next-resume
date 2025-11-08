@@ -26,7 +26,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
       <body className={`${poppins.variable} antialiased`}>
         {isDev && (
           <div className="flex justify-between p-2 print:hidden">
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               <ExportButton />
               {recentYearsOptions.map(year => (
                 <Link
