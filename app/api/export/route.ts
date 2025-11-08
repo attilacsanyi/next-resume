@@ -1,15 +1,21 @@
 import { env } from '@/env';
+import { parseRecentYears } from '@/features/resume';
 import { NextRequest } from 'next/server';
 import puppeteer from 'puppeteer';
 
 export const GET = async (request: NextRequest) => {
+  const searchParams = request.nextUrl.searchParams;
+  const queryString = searchParams.toString();
+
   try {
     const host = request.headers.get('host');
     const protocol =
       env.NODE_ENV === 'production' && host !== 'localhost:3000'
         ? 'https'
         : 'http';
-    const baseUrl = `${protocol}://${host}`;
+    const baseUrl = queryString
+      ? `${protocol}://${host}?${queryString}`
+      : `${protocol}://${host}`;
 
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
@@ -42,6 +48,7 @@ export const GET = async (request: NextRequest) => {
 
     await browser.close();
 
+    // Generate date string for file name
     const date = new Date()
       .toLocaleDateString('en-GB', {
         year: '2-digit',
@@ -51,7 +58,18 @@ export const GET = async (request: NextRequest) => {
       .split('/')
       .join('');
 
-    const fileName = ['attila_csanyi', 'CV', date].join('_');
+    // Get recent years filter
+    const recentYearsParam = searchParams.get('recentYears');
+    const recentYears = parseRecentYears(recentYearsParam);
+
+    const recentYearsPart = isFinite(recentYears)
+      ? ['last', recentYears, recentYears > 1 ? 'years' : 'year']
+      : [];
+
+    // Generate file name
+    const fileName = ['Attila_Csanyi', 'CV', ...recentYearsPart, date].join(
+      '_'
+    );
 
     return new Response(new Uint8Array(pdfBuffer), {
       headers: {
