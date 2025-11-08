@@ -8,7 +8,7 @@ type LinkProps = {
   weight?: LinkVariants['weight'];
   className?: string;
   external?: boolean;
-} & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>;
+} & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'target' | 'rel'>;
 
 export const Link = ({
   children,
