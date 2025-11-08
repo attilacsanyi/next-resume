@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const TailwindDemo = () => {
+export const TailwindDemo = () => {
   return (
     <div className="flex flex-col gap-8 rounded-3xl bg-linear-to-br from-purple-600 via-pink-500 to-orange-400 p-8 shadow-2xl">
       <div className="flex flex-col items-center gap-6 rounded-2xl bg-white/10 p-6 backdrop-blur-sm md:flex-row md:gap-8">
@@ -35,5 +35,3 @@ const TailwindDemo = () => {
     </div>
   );
 };
-
-export default TailwindDemo;
