@@ -6,6 +6,7 @@ type SectionWrapperProps = {
     mobile?: number;
     tablet?: number;
     desktop?: number;
+    xl?: number;
   };
 };
 
@@ -13,10 +14,12 @@ const getGridCols = (columns: {
   mobile?: number;
   tablet?: number;
   desktop?: number;
+  xl?: number;
 }): string => {
   const mobile = columns.mobile ?? 1;
   const tablet = columns.tablet ?? 2;
   const desktop = columns.desktop ?? 3;
+  const xl = columns.xl ?? 4;
 
   // Explicit class mappings to ensure Tailwind detects them
   const mobileClass =
@@ -43,14 +46,22 @@ const getGridCols = (columns: {
       4: 'lg:grid-cols-4',
     }[desktop] ?? 'lg:grid-cols-3';
 
-  return `${mobileClass} ${tabletClass} ${desktopClass}`;
+  const xlClass =
+    {
+      1: 'xl:grid-cols-1',
+      2: 'xl:grid-cols-2',
+      3: 'xl:grid-cols-3',
+      4: 'xl:grid-cols-4',
+    }[xl] ?? 'xl:grid-cols-4';
+
+  return `${mobileClass} ${tabletClass} ${desktopClass} ${xlClass}`;
 };
 
 export const SectionWrapper = ({
   title,
   subtitle,
   children,
-  columns = { mobile: 1, tablet: 2, desktop: 3 },
+  columns = { mobile: 1, tablet: 2, desktop: 3, xl: 4 },
 }: SectionWrapperProps) => {
   return (
     <section className="mb-12">
