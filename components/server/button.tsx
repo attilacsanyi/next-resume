@@ -1,6 +1,25 @@
-export const Button = ({ children }: { children: React.ReactNode }) => {
+import { cn } from '@/shared/utils/utils';
+import { type ButtonVariants, buttonVariants } from './button.variants';
+
+type ButtonProps = {
+  children: React.ReactNode;
+  variant?: ButtonVariants['variant'];
+  size?: ButtonVariants['size'];
+  className?: string;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+export const Button = ({
+  children,
+  variant,
+  size,
+  className,
+  ...props
+}: ButtonProps) => {
   return (
-    <button className="rounded-lg bg-linear-to-r from-blue-500 to-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:from-blue-600 hover:to-indigo-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-hidden">
+    <button
+      className={cn(buttonVariants({ variant, size }), className)}
+      {...props}
+    >
       {children}
     </button>
   );
