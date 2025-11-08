@@ -29,7 +29,8 @@ export const LearningsSection = ({
       columns={{
         mobile: 1,
         tablet: itemCount >= 2 ? 2 : itemCount,
-        desktop: itemCount >= 3 ? 3 : itemCount,
+        desktop: itemCount >= 2 ? 2 : itemCount,
+        xl: itemCount >= 4 ? 4 : itemCount,
       }}
       subtitle={subtitle}
       title="Certifications & Learnings"

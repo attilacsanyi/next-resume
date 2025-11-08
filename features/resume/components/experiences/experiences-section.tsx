@@ -33,6 +33,7 @@ export const ExperiencesSection = ({
         mobile: 1,
         tablet: 1,
         desktop: itemCount >= 2 ? 2 : itemCount,
+        xl: itemCount >= 2 ? 2 : itemCount,
       }}
       subtitle={subtitle}
       title="Professional Experience"

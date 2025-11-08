@@ -11,7 +11,7 @@ export const EducationsSection = ({ educations }: EducationsSectionProps) => {
 
   return (
     <SectionWrapper
-      columns={{ mobile: 1, tablet: 2, desktop: 2 }}
+      columns={{ mobile: 1, tablet: 2, desktop: 2, xl: 2 }}
       title="Education"
     >
       {educations.map((education, index) => (
