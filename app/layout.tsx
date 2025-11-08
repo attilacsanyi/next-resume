@@ -34,8 +34,10 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
                   className="cursor-pointer"
                   href={isFinite(year) ? `/?recentYears=${year}` : '/'}
                 >
-                  <Button>
-                    {isFinite(year) ? `Last ${year} year${year > 1 ? 's' : ''}` : 'All years'}
+                  <Button size="sm">
+                    {isFinite(year)
+                      ? `Last ${year} year${year > 1 ? 's' : ''}`
+                      : 'All years'}
                   </Button>
                 </Link>
               ))}

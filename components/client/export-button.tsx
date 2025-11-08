@@ -11,7 +11,7 @@ export const ExportButton = () => {
       className="cursor-pointer"
       href={`/api/export${queryString ? `?${queryString}` : ''}`}
     >
-      <Button>Download as PDF</Button>
+      <Button variant="primary">Download as PDF</Button>
     </Link>
   );
 };
