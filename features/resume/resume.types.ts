@@ -105,7 +105,7 @@ export const developmentSchema = z.object({
   name: z.string(),
   description: z.string(),
   dates: periodSchema,
-  tags: z.array(z.string()),
+  technologies: z.array(technologySchema),
   github: z.string().url(),
   url: z.string().url(),
 });

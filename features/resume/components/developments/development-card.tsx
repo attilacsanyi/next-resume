@@ -1,24 +1,14 @@
 import type { Development } from '../../resume.types';
+import { formatPeriod } from '../../utils/date.util';
+import { TechnologiesList } from '../technology/technologies-list';
 
 type DevelopmentCardProps = {
   development: Development;
 };
 
-const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-  });
-};
-
-const formatPeriod = (start: string, end?: string): string => {
-  const startFormatted = formatDate(start);
-  const endFormatted = end ? formatDate(end) : 'Present';
-  return `${startFormatted} - ${endFormatted}`;
-};
-
 export const DevelopmentCard = ({ development }: DevelopmentCardProps) => {
+  const { technologies, github, url } = development;
+
   return (
     <article className="border-foreground/10 bg-background flex flex-col rounded-lg border p-4 transition-shadow hover:shadow-md print:shadow-none print:hover:shadow-none">
       <div className="mb-3 flex items-start justify-between gap-2">
@@ -33,38 +23,30 @@ export const DevelopmentCard = ({ development }: DevelopmentCardProps) => {
       <p className="text-foreground/80 mb-3 grow text-sm">
         {development.description}
       </p>
-      {development.tags.length > 0 && (
-        <div className="mb-3 flex flex-wrap gap-2">
-          {development.tags.map((tag, index) => (
-            <span
-              key={index}
-              className="bg-foreground/5 text-foreground/70 rounded-md px-2 py-1 text-xs"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
-      {development.github || development.url ? (
-        <div className="flex flex-wrap gap-3">
-          <a
-            className="text-foreground/80 hover:text-foreground text-sm underline-offset-4 transition-colors hover:underline print:no-underline"
-            href={development.github}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            GitHub
-          </a>
-          <a
-            className="text-foreground/80 hover:text-foreground text-sm underline-offset-4 transition-colors hover:underline print:no-underline"
-            href={development.url}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Live Demo
-          </a>
-        </div>
-      ) : null}
+
+      {/* Technologies */}
+      <TechnologiesList
+        className="mb-4"
+        technologies={technologies}
+      />
+      <div className="flex flex-wrap gap-3">
+        <a
+          className="text-foreground/80 hover:text-foreground text-sm underline-offset-4 transition-colors hover:underline print:no-underline"
+          href={github}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          GitHub
+        </a>
+        <a
+          className="text-foreground/80 hover:text-foreground text-sm underline-offset-4 transition-colors hover:underline print:no-underline"
+          href={url}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Live Demo
+        </a>
+      </div>
     </article>
   );
 };

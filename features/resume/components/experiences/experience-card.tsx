@@ -1,40 +1,8 @@
-import type { Experience, Technology, TechType } from '../../resume.types';
+import type { Experience } from '../../resume.types';
+import { formatPeriod } from '../../utils/date.util';
+import { TechnologiesList } from '../technology/technologies-list';
 import { PositionBadge } from './position-badge';
 import { RecommendationCard } from './recommendation-card';
-import { TechnologyTag } from './technology-tag';
-
-const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-  });
-};
-
-const formatPeriod = (start: string, end?: string): string => {
-  const startFormatted = formatDate(start);
-  const endFormatted = end ? formatDate(end) : 'Present';
-  return `${startFormatted} - ${endFormatted}`;
-};
-
-const technologyTypeOrder: Record<TechType, number> = {
-  skill: 0,
-  lib: 1,
-  tool: 2,
-};
-
-const sortTechnologiesByType = (technologies: Technology[]): Technology[] => {
-  return [...technologies].sort((a, b) => {
-    const typeDiff = technologyTypeOrder[a.type] - technologyTypeOrder[b.type];
-    if (typeDiff !== 0) return typeDiff;
-
-    // Featured ones come first within the same type
-    if (a.featured === b.featured) {
-      return a.name.localeCompare(b.name);
-    }
-    return a.featured ? -1 : 1;
-  });
-};
 
 type ExperienceCardProps = {
   experience: Experience;
@@ -107,21 +75,11 @@ export const ExperienceCard = ({ experience }: ExperienceCardProps) => {
       )}
 
       {/* Technologies */}
-      {technologies.length > 0 && (
-        <div className="mb-4">
-          <h4 className="text-foreground/60 mb-2 text-sm font-semibold tracking-wide uppercase">
-            Technologies
-          </h4>
-          <div className="flex flex-wrap gap-2 pl-6">
-            {sortTechnologiesByType(technologies).map((technology, index) => (
-              <TechnologyTag
-                key={index}
-                technology={technology}
-              />
-            ))}
-          </div>
-        </div>
-      )}
+      <TechnologiesList
+        className="mb-4"
+        technologies={technologies}
+        showTitle
+      />
 
       {/* Recommendations */}
       {recommendations && recommendations.length > 0 && (
