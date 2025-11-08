@@ -1,15 +1,8 @@
 import type { Education } from '../../resume.types';
+import { formatDate } from '../../utils/date.util';
 
 type EducationCardProps = {
   education: Education;
-};
-
-const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-  });
 };
 
 const formatPeriod = (start: string, end?: string): string => {

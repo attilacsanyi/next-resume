@@ -3,7 +3,7 @@ import {
   ResumeCollectionDocument,
   type ResumeCollectionQuery,
 } from '@/features/contentful';
-import { validateResumeJSON } from './resume.util';
+import { validateResumeJSON } from './utils/resume.util';
 
 export const getResume = async (preview = false) => {
   const { data } = await client.query<ResumeCollectionQuery>({

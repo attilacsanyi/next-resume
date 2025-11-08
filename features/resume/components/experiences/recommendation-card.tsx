@@ -1,15 +1,8 @@
 import type { Recommendation } from '../../resume.types';
+import { formatDate } from '../../utils/date.util';
 
 type RecommendationCardProps = {
   recommendation: Recommendation;
-};
-
-const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-  });
 };
 
 export const RecommendationCard = ({

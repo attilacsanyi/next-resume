@@ -1,24 +1,3 @@
-import { ZodError } from 'zod';
-import { resumeSchema } from './resume.types';
-
-export const validateResumeJSON = (resumeData: object) => {
-  try {
-    const validateResume = resumeSchema.parse(resumeData);
-    return validateResume;
-  } catch (error) {
-    if (error instanceof ZodError) {
-      // Collect and format all validation errors
-      const errorDetails = error.errors
-        .map(err => `${err.path.join('.')}: ${err.message}`)
-        .join('\n');
-
-      throw new Error(`Invalid resume data!\n\n ${errorDetails}`);
-    }
-
-    throw error;
-  }
-};
-
 /**
  * Filters items by recent years based on their end date (or current date if ongoing).
  * @param items - Array of items to filter
@@ -83,4 +62,29 @@ export const parseRecentYears = (
 
   // Normalize 0 or invalid values to Infinity (show all)
   return Number.isNaN(parsed) || parsed <= 0 ? Infinity : parsed;
+};
+
+/**
+ * Formats a date string to a localized date format (e.g., "Jan 2024").
+ * @param dateString - ISO date string to format
+ * @returns Formatted date string
+ */
+export const formatDate = (dateString: string): string => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+  });
+};
+
+/**
+ * Formats a date period with start and optional end date.
+ * @param start - Start date string
+ * @param end - Optional end date string
+ * @returns Formatted period string (e.g., "Jan 2024 - Present" or "Jan 2024 - Dec 2024")
+ */
+export const formatPeriod = (start: string, end?: string): string => {
+  const startFormatted = formatDate(start);
+  const endFormatted = end ? formatDate(end) : 'Present';
+  return `${startFormatted} - ${endFormatted}`;
 };

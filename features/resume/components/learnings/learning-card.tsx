@@ -1,15 +1,8 @@
 import type { Learning } from '../../resume.types';
+import { formatDate } from '../../utils/date.util';
 
 type LearningCardProps = {
   learning: Learning;
-};
-
-const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-  });
 };
 
 export const LearningCard = ({ learning }: LearningCardProps) => {
