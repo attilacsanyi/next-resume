@@ -1,3 +1,4 @@
+import { Link } from '@/components/server';
 import type { Recommendation } from '../../resume.types';
 import { formatDate } from '../../utils/date.util';
 
@@ -36,14 +37,7 @@ export const RecommendationCard = ({
           ))}
         </ul>
       </blockquote>
-      <a
-        className="text-foreground/80 hover:text-foreground text-sm underline-offset-4 transition-colors hover:underline print:no-underline"
-        href={recommendation.profile.url}
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        View on LinkedIn
-      </a>
+      <Link href={recommendation.profile.url}>View on LinkedIn</Link>
     </article>
   );
 };

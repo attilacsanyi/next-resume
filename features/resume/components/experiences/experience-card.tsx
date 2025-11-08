@@ -1,3 +1,4 @@
+import { Link } from '@/components/server';
 import type { Experience } from '../../resume.types';
 import { formatPeriod } from '../../utils/date.util';
 import { TechnologiesList } from '../technology/technologies-list';
@@ -20,14 +21,13 @@ export const ExperienceCard = ({ experience }: ExperienceCardProps) => {
             <h3 className="text-lg font-semibold">{position.title}</h3>
             <div className="mt-1 flex flex-wrap items-center gap-2">
               {company.website ? (
-                <a
-                  className="text-foreground/80 hover:text-foreground text-base font-medium underline-offset-4 transition-colors hover:underline print:no-underline"
+                <Link
                   href={company.website}
-                  rel="noopener noreferrer"
-                  target="_blank"
+                  size="base"
+                  weight="medium"
                 >
                   {company.name}
-                </a>
+                </Link>
               ) : (
                 <span className="text-base font-medium">{company.name}</span>
               )}

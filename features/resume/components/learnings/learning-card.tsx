@@ -1,3 +1,4 @@
+import { Link } from '@/components/server';
 import type { Learning } from '../../resume.types';
 import { formatDate } from '../../utils/date.util';
 
@@ -28,14 +29,12 @@ export const LearningCard = ({ learning }: LearningCardProps) => {
         </p>
       )}
       {learning.certificate && (
-        <a
-          className="text-foreground/80 hover:text-foreground mt-2 inline-block text-sm underline-offset-4 transition-colors hover:underline print:no-underline"
+        <Link
+          className="mt-2"
           href={learning.certificate}
-          rel="noopener noreferrer"
-          target="_blank"
         >
           View Certificate
-        </a>
+        </Link>
       )}
     </article>
   );

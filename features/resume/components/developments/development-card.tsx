@@ -1,3 +1,4 @@
+import { Link } from '@/components/server';
 import type { Development } from '../../resume.types';
 import { formatPeriod } from '../../utils/date.util';
 import { TechnologiesList } from '../technology/technologies-list';
@@ -30,22 +31,8 @@ export const DevelopmentCard = ({ development }: DevelopmentCardProps) => {
         technologies={technologies}
       />
       <div className="flex flex-wrap gap-3">
-        <a
-          className="text-foreground/80 hover:text-foreground text-sm underline-offset-4 transition-colors hover:underline print:no-underline"
-          href={github}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          GitHub
-        </a>
-        <a
-          className="text-foreground/80 hover:text-foreground text-sm underline-offset-4 transition-colors hover:underline print:no-underline"
-          href={url}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          Live Demo
-        </a>
+        <Link href={github}>GitHub</Link>
+        <Link href={url}>Live Demo</Link>
       </div>
     </article>
   );
