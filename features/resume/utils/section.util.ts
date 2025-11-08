@@ -1,4 +1,4 @@
-import { calculateMaxYears, filterByRecentYears } from './resume.util';
+import { calculateMaxYears, filterByRecentYears } from './date.util';
 
 type SectionData<T> = null | {
   filteredItems: T[];

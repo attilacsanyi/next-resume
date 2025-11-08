@@ -1,6 +1,6 @@
 import { SectionWrapper } from '@/features/resume/components/section-wrapper';
 import type { Learning } from '../../resume.types';
-import { prepareSectionData } from '../../section.util';
+import { prepareSectionData } from '../../utils/section.util';
 import { LearningCard } from './learning-card';
 
 type LearningsSectionProps = {
