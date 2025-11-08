@@ -35,7 +35,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
                   href={isFinite(year) ? `/?recentYears=${year}` : '/'}
                 >
                   <Button>
-                    {isFinite(year) ? `Last ${year} years` : 'All years'}
+                    {isFinite(year) ? `Last ${year} year${year > 1 ? 's' : ''}` : 'All years'}
                   </Button>
                 </Link>
               ))}
