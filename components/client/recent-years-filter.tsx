@@ -4,12 +4,13 @@ import { Button } from '@/components/server';
 import { parseRecentYears } from '@/features/resume/utils/date.util';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 type RecentYearsFilterProps = {
   recentYearsOptions: number[];
 };
 
-export const RecentYearsFilter = ({
+const RecentYearsFilterContent = ({
   recentYearsOptions,
 }: RecentYearsFilterProps) => {
   const searchParams = useSearchParams();
@@ -34,5 +35,13 @@ export const RecentYearsFilter = ({
         </Link>
       ))}
     </>
+  );
+};
+
+export const RecentYearsFilter = (props: RecentYearsFilterProps) => {
+  return (
+    <Suspense fallback={<div className="flex gap-2">Loading...</div>}>
+      <RecentYearsFilterContent {...props} />
+    </Suspense>
   );
 };
