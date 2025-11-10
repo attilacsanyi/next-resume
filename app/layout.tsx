@@ -1,9 +1,7 @@
-import { ExportButton } from '@/components/client';
-import { Button } from '@/components/server';
+import { ExportButton, RecentYearsFilter } from '@/components/client';
 import { env } from '@/env';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
-import Link from 'next/link';
 import './globals.css';
 
 const poppins = Poppins({
@@ -19,33 +17,25 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const isDev = env.NODE_ENV !== 'production';
-  const recentYearsOptions = [Infinity, 1, 2, 5, 10];
+  const recentYearsOptions = [1, 2, 5, 10, Infinity];
 
   return (
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
-        {isDev && (
+        {isDev ? (
           <div className="flex justify-between p-2 print:hidden">
             <div className="flex items-center gap-2">
               <ExportButton />
-              {recentYearsOptions.map(year => (
-                <Link
-                  key={year}
-                  className="cursor-pointer"
-                  href={isFinite(year) ? `/?recentYears=${year}` : '/'}
-                >
-                  <Button size="sm">
-                    {isFinite(year)
-                      ? `Last ${year} year${year > 1 ? 's' : ''}`
-                      : 'All years'}
-                  </Button>
-                </Link>
-              ))}
+              <RecentYearsFilter recentYearsOptions={recentYearsOptions} />
             </div>
             <div className="flex gap-2">
               <p>Contentful: {env.CONTENTFUL_ENVIRONMENT}</p>
               <p>Node: {env.NODE_ENV}</p>
             </div>
+          </div>
+        ) : (
+          <div className="flex justify-end gap-2 p-2 print:hidden">
+            <RecentYearsFilter recentYearsOptions={recentYearsOptions} />
           </div>
         )}
         {children}
