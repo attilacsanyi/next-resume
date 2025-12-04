@@ -55,21 +55,25 @@ export type Asset = {
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetContentTypeArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetFileNameArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetHeightArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Represents a binary file in a space. An asset can be any file type. */
@@ -80,22 +84,26 @@ export type AssetLinkedFromArgs = {
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetSizeArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetTitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetUrlArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   transform?: InputMaybe<ImageTransformOptions>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetWidthArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type AssetCollection = {
@@ -191,6 +199,7 @@ export type AssetLinkingCollectionsAuthorCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
@@ -198,6 +207,7 @@ export type AssetLinkingCollectionsEntryCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type AssetLinkingCollectionsPostCollectionArgs = {
@@ -205,6 +215,7 @@ export type AssetLinkingCollectionsPostCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export enum AssetOrder {
@@ -250,12 +261,14 @@ export type AuthorLinkedFromArgs = {
 /** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/author) */
 export type AuthorNameArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/author) */
 export type AuthorPictureArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type AuthorCollection = {
@@ -292,6 +305,7 @@ export type AuthorLinkingCollectionsEntryCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type AuthorLinkingCollectionsPostCollectionArgs = {
@@ -302,6 +316,7 @@ export type AuthorLinkingCollectionsPostCollectionArgs = {
   >;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export enum AuthorLinkingCollectionsPostCollectionOrder {
@@ -526,28 +541,33 @@ export type Post = Entry &
 export type PostAuthorArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<AuthorFilter>;
 };
 
 /** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/post) */
 export type PostContentArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/post) */
 export type PostCoverImageArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/post) */
 export type PostDateArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/post) */
 export type PostExcerptArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/post) */
@@ -558,11 +578,13 @@ export type PostLinkedFromArgs = {
 /** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/post) */
 export type PostSlugArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/post) */
 export type PostTitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type PostCollection = {
@@ -674,6 +696,7 @@ export type PostLinkingCollectionsEntryCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export enum PostOrder {
@@ -714,18 +737,21 @@ export type Query_NodeArgs = {
   id: Scalars['ID']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type Query_NodesArgs = {
   ids: Array<Scalars['ID']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type QueryAssetArgs = {
   id: Scalars['String']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type QueryAssetCollectionArgs = {
@@ -734,6 +760,7 @@ export type QueryAssetCollectionArgs = {
   order?: InputMaybe<Array<InputMaybe<AssetOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<AssetFilter>;
 };
 
@@ -741,6 +768,7 @@ export type QueryAuthorArgs = {
   id: Scalars['String']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type QueryAuthorCollectionArgs = {
@@ -749,6 +777,7 @@ export type QueryAuthorCollectionArgs = {
   order?: InputMaybe<Array<InputMaybe<AuthorOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<AuthorFilter>;
 };
 
@@ -758,6 +787,7 @@ export type QueryEntryCollectionArgs = {
   order?: InputMaybe<Array<InputMaybe<EntryOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<EntryFilter>;
 };
 
@@ -765,6 +795,7 @@ export type QueryPostArgs = {
   id: Scalars['String']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type QueryPostCollectionArgs = {
@@ -773,6 +804,7 @@ export type QueryPostCollectionArgs = {
   order?: InputMaybe<Array<InputMaybe<PostOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<PostFilter>;
 };
 
@@ -780,6 +812,7 @@ export type QueryResumeArgs = {
   id: Scalars['String']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type QueryResumeCollectionArgs = {
@@ -788,6 +821,7 @@ export type QueryResumeCollectionArgs = {
   order?: InputMaybe<Array<InputMaybe<ResumeOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<ResumeFilter>;
 };
 
@@ -801,7 +835,7 @@ export type ResourceSys = {
   urn: Scalars['String']['output'];
 };
 
-/** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
+/** Content type storing my resume as json based on my https://github.com/attilacsanyi/next-resume project [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
 export type Resume = Entry &
   _Node & {
     __typename?: 'Resume';
@@ -814,24 +848,27 @@ export type Resume = Entry &
     sys: Sys;
   };
 
-/** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
+/** Content type storing my resume as json based on my https://github.com/attilacsanyi/next-resume project [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
 export type ResumeIsActiveArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
+/** Content type storing my resume as json based on my https://github.com/attilacsanyi/next-resume project [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
 export type ResumeJsonArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
+/** Content type storing my resume as json based on my https://github.com/attilacsanyi/next-resume project [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
 export type ResumeLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
+/** Content type storing my resume as json based on my https://github.com/attilacsanyi/next-resume project [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
 export type ResumeNameArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type ResumeCollection = {
@@ -870,6 +907,7 @@ export type ResumeLinkingCollectionsEntryCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export enum ResumeOrder {
