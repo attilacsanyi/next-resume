@@ -11,9 +11,12 @@ export const getResume = async (preview = false) => {
     variables: { isPreview: preview },
   });
 
-  const validatedResume = validateResumeJSON(
-    data.resumeCollection?.items[0].json
+  const activeResumeItem = data.resumeCollection?.items.find(
+    item => item.isActive
   );
+  const validatedResume = activeResumeItem
+    ? validateResumeJSON(activeResumeItem.json)
+    : undefined;
 
   return validatedResume;
 };
