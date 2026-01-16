@@ -835,7 +835,7 @@ export type ResourceSys = {
   urn: Scalars['String']['output'];
 };
 
-/** Content type storing my resume as json based on my https://github.com/attilacsanyi/next-resume project [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
+/** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
 export type Resume = Entry &
   _Node & {
     __typename?: 'Resume';
@@ -848,24 +848,24 @@ export type Resume = Entry &
     sys: Sys;
   };
 
-/** Content type storing my resume as json based on my https://github.com/attilacsanyi/next-resume project [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
+/** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
 export type ResumeIsActiveArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** Content type storing my resume as json based on my https://github.com/attilacsanyi/next-resume project [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
+/** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
 export type ResumeJsonArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** Content type storing my resume as json based on my https://github.com/attilacsanyi/next-resume project [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
+/** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
 export type ResumeLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-/** Content type storing my resume as json based on my https://github.com/attilacsanyi/next-resume project [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
+/** [See type definition](https://app.contentful.com/spaces/9m5z2klizkj3/content_types/resume) */
 export type ResumeNameArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
