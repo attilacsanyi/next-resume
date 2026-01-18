@@ -1,4 +1,5 @@
 import { Link } from '@/components/server';
+import { FaLink } from 'react-icons/fa6';
 import type { Experience } from '../../resume.types';
 import { formatPeriod } from '../../utils/date.util';
 import { TechnologiesList } from '../technology/technologies-list';
@@ -22,11 +23,17 @@ export const ExperienceCard = ({ experience }: ExperienceCardProps) => {
             <div className="mt-1 flex flex-wrap items-center gap-2">
               {company.website ? (
                 <Link
+                  className="focus-visible:outline-primary print:text-foreground flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-offset-2 print:mt-0.5 print:[&::after]:content-none"
                   href={company.website}
                   size="base"
                   weight="medium"
                 >
-                  {company.name}
+                  <h4>{company.name}</h4>
+                  <FaLink
+                    aria-hidden="true"
+                    className="text-foreground/70 print:text-foreground shrink-0"
+                    size={18}
+                  />
                 </Link>
               ) : (
                 <span className="text-base font-medium">{company.name}</span>
