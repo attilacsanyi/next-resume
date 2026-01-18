@@ -32,7 +32,7 @@ export const ExperiencesSection = ({
       columns={{
         mobile: 1,
         tablet: 1,
-        desktop: itemCount >= 2 ? 2 : itemCount,
+        desktop: 1,
         xl: itemCount >= 2 ? 2 : itemCount,
       }}
       subtitle={subtitle}
