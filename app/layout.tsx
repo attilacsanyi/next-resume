@@ -17,12 +17,12 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const isDev = env.NODE_ENV !== 'production';
-  const recentYearsOptions = [1, 2, 5, 10, Infinity];
+  const recentYearsOptions = [2, 5, 10, Infinity];
 
   return (
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
-        {isDev ? (
+        {!isDev ? (
           <div className="flex justify-between p-2 print:hidden">
             <div className="flex items-center gap-2">
               <ExportButton />
@@ -36,6 +36,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
         ) : (
           <div className="relative p-2 print:hidden">
             <div className="flex justify-start gap-2 overflow-x-auto overflow-y-hidden scroll-smooth md:justify-end md:overflow-x-visible">
+              <ExportButton />
               <RecentYearsFilter recentYearsOptions={recentYearsOptions} />
             </div>
             <div className="from-background pointer-events-none absolute top-0 right-0 h-full w-32 bg-linear-to-l to-transparent md:hidden" />

@@ -30,7 +30,7 @@ const RecentYearsFilterContent = ({
           >
             {isFinite(year)
               ? `Last ${year} year${year > 1 ? 's' : ''}`
-              : 'Full history'}
+              : 'Full'}
           </Button>
         </Link>
       ))}
