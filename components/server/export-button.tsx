@@ -15,7 +15,6 @@ export const ExportButton = ({
     variant="primary"
     onClick={onClick}
   >
-    {isLoading ? <FaSpinner className="animate-spin" /> : <FaFilePdf />}
-    Export
+    {isLoading ? <FaSpinner className="animate-spin" /> : <FaFilePdf />}Export
   </Button>
 );
