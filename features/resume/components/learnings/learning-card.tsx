@@ -1,4 +1,5 @@
 import { Link } from '@/components/server';
+import { FaCertificate } from 'react-icons/fa6';
 import type { Learning } from '../../resume.types';
 import { formatDate } from '../../utils/date.util';
 
@@ -30,10 +31,17 @@ export const LearningCard = ({ learning }: LearningCardProps) => {
       )}
       {learning.certificate && (
         <Link
-          className="mt-2"
+          aria-label={`View certificate for ${learning.title}`}
+          className="focus-visible:outline-primary print:text-foreground flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-offset-2 print:mt-0.5 print:[&::after]:content-none"
           href={learning.certificate}
+          external
         >
-          View Certificate
+          <FaCertificate
+            aria-hidden="true"
+            className="text-foreground/70 print:text-foreground shrink-0"
+            size={18}
+          />
+          <span>Certificate</span>
         </Link>
       )}
     </article>
