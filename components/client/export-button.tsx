@@ -3,27 +3,7 @@
 import { downloadFile } from '@/shared/utils';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useState } from 'react';
-import { FaFilePdf, FaSpinner } from 'react-icons/fa6';
-import { Button } from '../server';
-
-type DownloadAsPdfButtonProps = {
-  isLoading?: boolean;
-  onClick?: () => void;
-};
-
-const DownloadAsPdfButton = ({
-  isLoading = false,
-  onClick,
-}: DownloadAsPdfButtonProps) => (
-  <Button
-    disabled={isLoading}
-    variant="primary"
-    onClick={onClick}
-  >
-    {isLoading ? <FaSpinner className="animate-spin" /> : <FaFilePdf />}
-    Export
-  </Button>
-);
+import { ExportButton as ExportButtonBase } from '../server';
 
 const ExportButtonContent = () => {
   const searchParams = useSearchParams();
@@ -45,7 +25,7 @@ const ExportButtonContent = () => {
   };
 
   return (
-    <DownloadAsPdfButton
+    <ExportButtonBase
       isLoading={isLoading}
       onClick={handleExport}
     />
@@ -54,7 +34,7 @@ const ExportButtonContent = () => {
 
 export const ExportButton = () => {
   return (
-    <Suspense fallback={<DownloadAsPdfButton />}>
+    <Suspense fallback={<ExportButtonBase />}>
       <ExportButtonContent />
     </Suspense>
   );
