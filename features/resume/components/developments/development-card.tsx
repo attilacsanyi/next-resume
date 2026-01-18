@@ -57,7 +57,7 @@ export const DevelopmentCard = ({ development }: DevelopmentCardProps) => {
             className="text-foreground/70 print:text-foreground shrink-0"
             size={18}
           />
-          <span>Live Demo</span>
+          <span>Website</span>
         </Link>
       </div>
     </article>
