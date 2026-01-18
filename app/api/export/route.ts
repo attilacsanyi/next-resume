@@ -20,7 +20,6 @@ export const GET = async (request: NextRequest) => {
     const viewport: Viewport = {
       width: 794,
       height: 1123,
-      deviceScaleFactor: 2,
     };
 
     // Conditional browser setup for local vs serverless
@@ -34,6 +33,8 @@ export const GET = async (request: NextRequest) => {
           '--disable-dev-shm-usage', // Prevents crashes in low-memory environments
           '--disable-gpu',
           '--no-sandbox',
+          '--no-zygote',
+          '--disable-setuid-sandbox',
           '--single-process', // Recommended for serverless to reduce overhead
         ],
         defaultViewport: viewport,
@@ -59,8 +60,8 @@ export const GET = async (request: NextRequest) => {
 
     // Navigate to the page
     await page.goto(baseUrl, {
-      waitUntil: ['networkidle0', 'domcontentloaded'],
-      timeout: 30000, // 30s is safer for Netlify's execution limit
+      waitUntil: ['domcontentloaded'],
+      timeout: 9000, // Set this slightly below Netlify's 10s limit to catch it gracefully
     });
 
     // Generate PDF
