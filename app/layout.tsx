@@ -17,31 +17,28 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const isDev = env.NODE_ENV !== 'production';
-  const recentYearsOptions = [2, 5, 10, Infinity];
+  const recentYearsOptions = [2, 5, Infinity];
 
   return (
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
-        {isDev ? (
-          <div className="flex justify-between p-2 print:hidden">
-            <div className="flex items-center gap-2">
-              <ExportButton />
-              <RecentYearsFilter recentYearsOptions={recentYearsOptions} />
-            </div>
+        <div className="flex flex-col gap-2 p-2 print:hidden">
+          {/* Environment info */}
+          {isDev && (
             <div className="flex gap-2">
               <p>Contentful: {env.CONTENTFUL_ENVIRONMENT}</p>
               <p>Node: {env.NODE_ENV}</p>
             </div>
-          </div>
-        ) : (
-          <div className="relative p-2 print:hidden">
-            <div className="flex justify-start gap-2 overflow-x-auto overflow-y-hidden scroll-smooth md:justify-end md:overflow-x-visible">
-              <ExportButton />
+          )}
+
+          {/* Export and recent years filter */}
+          <div className="flex items-center justify-between gap-2">
+            <ExportButton />
+            <div className="flex gap-2">
               <RecentYearsFilter recentYearsOptions={recentYearsOptions} />
             </div>
-            <div className="from-background pointer-events-none absolute top-0 right-0 h-full w-32 bg-linear-to-l to-transparent md:hidden" />
           </div>
-        )}
+        </div>
         {children}
       </body>
     </html>
