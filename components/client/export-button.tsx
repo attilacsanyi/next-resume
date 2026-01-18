@@ -3,10 +3,14 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
+import { FaFilePdf } from 'react-icons/fa6';
 import { Button } from '../server';
 
 const DownloadAsPdfButton = () => (
-  <Button variant="primary">Download as PDF</Button>
+  <Button variant="primary">
+    {' '}
+    <FaFilePdf /> Export
+  </Button>
 );
 
 const ExportButtonContent = () => {
@@ -14,10 +18,7 @@ const ExportButtonContent = () => {
   const queryString = searchParams.toString();
 
   return (
-    <Link
-      className="cursor-pointer"
-      href={`/api/export${queryString ? `?${queryString}` : ''}`}
-    >
+    <Link href={`/api/export${queryString ? `?${queryString}` : ''}`}>
       <DownloadAsPdfButton />
     </Link>
   );
