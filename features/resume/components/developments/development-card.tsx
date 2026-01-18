@@ -1,4 +1,6 @@
 import { Link } from '@/components/server';
+import { FaGithub } from 'react-icons/fa6';
+import { SiNetlify } from 'react-icons/si';
 import type { Development } from '../../resume.types';
 import { formatPeriod } from '../../utils/date.util';
 import { TechnologiesList } from '../technology/technologies-list';
@@ -31,8 +33,32 @@ export const DevelopmentCard = ({ development }: DevelopmentCardProps) => {
         technologies={technologies}
       />
       <div className="flex flex-wrap gap-3">
-        <Link href={github}>GitHub</Link>
-        <Link href={url}>Live Demo</Link>
+        <Link
+          aria-label={`Visit ${development.name} on GitHub`}
+          className="focus-visible:outline-primary print:text-foreground flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-offset-2 print:mt-0.5 print:[&::after]:content-none"
+          href={github}
+          external
+        >
+          <FaGithub
+            aria-hidden="true"
+            className="text-foreground/70 print:text-foreground shrink-0"
+            size={18}
+          />
+          <span>GitHub</span>
+        </Link>
+        <Link
+          aria-label={`Visit ${development.name} live demo`}
+          className="focus-visible:outline-primary print:text-foreground flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-offset-2 print:mt-0.5 print:[&::after]:content-none"
+          href={url}
+          external
+        >
+          <SiNetlify
+            aria-hidden="true"
+            className="text-foreground/70 print:text-foreground shrink-0"
+            size={18}
+          />
+          <span>Live Demo</span>
+        </Link>
       </div>
     </article>
   );
