@@ -1,26 +1,54 @@
 'use client';
 
-import Link from 'next/link';
+import { downloadFile } from '@/shared/utils';
 import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
-import { FaFilePdf } from 'react-icons/fa6';
+import { Suspense, useState } from 'react';
+import { FaFilePdf, FaSpinner } from 'react-icons/fa6';
 import { Button } from '../server';
 
-const DownloadAsPdfButton = () => (
-  <Button variant="primary">
-    {' '}
-    <FaFilePdf /> Export
+type DownloadAsPdfButtonProps = {
+  isLoading?: boolean;
+  onClick?: () => void;
+};
+
+const DownloadAsPdfButton = ({
+  isLoading = false,
+  onClick,
+}: DownloadAsPdfButtonProps) => (
+  <Button
+    disabled={isLoading}
+    variant="primary"
+    onClick={onClick}
+  >
+    {isLoading ? <FaSpinner className="animate-spin" /> : <FaFilePdf />}
+    Export
   </Button>
 );
 
 const ExportButtonContent = () => {
   const searchParams = useSearchParams();
-  const queryString = searchParams.toString();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleExport = async () => {
+    setIsLoading(true);
+    try {
+      const queryString = searchParams.toString();
+      await downloadFile(
+        `/api/export${queryString ? `?${queryString}` : ''}`,
+        'resume.pdf'
+      );
+    } catch (error) {
+      console.error('Export error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <Link href={`/api/export${queryString ? `?${queryString}` : ''}`}>
-      <DownloadAsPdfButton />
-    </Link>
+    <DownloadAsPdfButton
+      isLoading={isLoading}
+      onClick={handleExport}
+    />
   );
 };
 
