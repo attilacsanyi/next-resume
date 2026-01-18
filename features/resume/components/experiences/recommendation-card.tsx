@@ -12,16 +12,18 @@ export const RecommendationCard = ({
 }: RecommendationCardProps) => {
   return (
     <article className="border-foreground/10 bg-foreground/2 rounded-lg border p-4">
-      <div className="mb-3 flex items-start justify-between gap-2">
+      <div className="mb-3 flex items-start justify-between gap-2 print:flex-col">
         <div className="flex-1">
           <div className="flex items-center gap-2 print:flex-col print:items-start">
-            <h4 className="text-base font-semibold">{recommendation.name}</h4>
             <Link
               aria-label={`Visit ${recommendation.name}'s LinkedIn profile`}
               className="focus-visible:outline-primary print:text-foreground flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-offset-2 print:mt-0.5 print:[&::after]:content-none"
               href={recommendation.profile.url}
+              size="base"
+              weight="medium"
               external
             >
+              <h4>{recommendation.name}</h4>
               <FaLinkedin
                 aria-hidden="true"
                 className="text-foreground/70 print:text-foreground shrink-0"
