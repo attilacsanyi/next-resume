@@ -6,39 +6,39 @@ export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
   const queryString = searchParams.toString();
 
+  let browser = null;
+
   try {
     const host = request.headers.get('host');
     const protocol =
-      env.NODE_ENV === 'production' && host !== 'localhost:3000'
+      env.NODE_ENV === 'production' && !host?.includes('localhost')
         ? 'https'
         : 'http';
-    const baseUrl = queryString
-      ? `${protocol}://${host}?${queryString}`
-      : `${protocol}://${host}`;
-
+    const baseUrl = `${protocol}://${host}${queryString ? `?${queryString}` : ''}`;
     // Conditional browser setup for local vs serverless
-    const browser = await (async () => {
-      if (env.NODE_ENV === 'production') {
-        // Production: Use puppeteer-core with @sparticuz/chromium
-        const puppeteerCore = (await import('puppeteer-core')).default;
-        const chromium = (await import('@sparticuz/chromium')).default;
+    if (env.NODE_ENV === 'production') {
+      const puppeteerCore = (await import('puppeteer-core')).default;
+      const chromium = (await import('@sparticuz/chromium')).default;
 
-        return puppeteerCore.launch({
-          args: chromium.args,
-          defaultViewport: chromium.defaultViewport,
-          executablePath: await chromium.executablePath(), // This finds the bin files we included
-          headless: chromium.headless,
-        });
-      } else {
-        // Local dev: Use regular puppeteer with bundled Chrome
-        const puppeteer = (await import('puppeteer')).default;
-
-        return puppeteer.launch({
-          headless: true,
-          args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        });
-      }
-    })();
+      browser = await puppeteerCore.launch({
+        args: [
+          ...chromium.args,
+          '--disable-dev-shm-usage', // Prevents crashes in low-memory environments
+          '--disable-gpu',
+          '--no-sandbox',
+          '--single-process', // Recommended for serverless to reduce overhead
+        ],
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath(),
+        headless: chromium.headless,
+      });
+    } else {
+      const puppeteer = (await import('puppeteer')).default;
+      browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      });
+    }
 
     const page = await browser.newPage();
 
@@ -54,19 +54,18 @@ export const GET = async (request: NextRequest) => {
     });
 
     // Navigate to the page
-    await page.goto(`${baseUrl}`, {
-      waitUntil: ['load', 'networkidle0'],
-      timeout: 60000,
+    await page.goto(baseUrl, {
+      waitUntil: ['networkidle0', 'domcontentloaded'],
+      timeout: 30000, // 30s is safer for Netlify's execution limit
     });
 
     // Generate PDF
     const pdfBuffer = await page.pdf({
       format: 'A4',
       printBackground: true,
-      scale: 0.75, // Adjust scale to prevent content overflow
+      scale: 0.75,
+      margin: { top: '0px', right: '0px', bottom: '0px', left: '0px' },
     });
-
-    await browser.close();
 
     // Generate date string for file name
     const date = new Date()
@@ -104,5 +103,10 @@ export const GET = async (request: NextRequest) => {
       { error: `Failed to generate PDF: ${(error as Error).message}` },
       { status: 500 }
     );
+  } finally {
+    // Close the browser to prevent "zombie" processes and memory leaks that cause the next request to fail.
+    if (browser !== null) {
+      await browser.close();
+    }
   }
 };
