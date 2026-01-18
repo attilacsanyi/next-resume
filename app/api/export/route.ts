@@ -1,6 +1,7 @@
 import { env } from '@/env';
 import { parseRecentYears } from '@/features/resume';
 import { NextRequest } from 'next/server';
+import type { Viewport } from 'puppeteer-core';
 
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
@@ -15,6 +16,13 @@ export const GET = async (request: NextRequest) => {
         ? 'https'
         : 'http';
     const baseUrl = `${protocol}://${host}${queryString ? `?${queryString}` : ''}`;
+
+    const viewport: Viewport = {
+      width: 794,
+      height: 1123,
+      deviceScaleFactor: 2,
+    };
+
     // Conditional browser setup for local vs serverless
     if (env.NODE_ENV === 'production') {
       const puppeteerCore = (await import('puppeteer-core')).default;
@@ -28,9 +36,9 @@ export const GET = async (request: NextRequest) => {
           '--no-sandbox',
           '--single-process', // Recommended for serverless to reduce overhead
         ],
-        defaultViewport: chromium.defaultViewport,
+        defaultViewport: viewport,
         executablePath: await chromium.executablePath(),
-        headless: chromium.headless,
+        headless: 'shell',
       });
     } else {
       const puppeteer = (await import('puppeteer')).default;
@@ -47,11 +55,7 @@ export const GET = async (request: NextRequest) => {
       { name: 'prefers-color-scheme', value: 'dark' },
     ]);
 
-    await page.setViewport({
-      width: 794,
-      height: 1123,
-      deviceScaleFactor: 2,
-    });
+    await page.setViewport(viewport);
 
     // Navigate to the page
     await page.goto(baseUrl, {
