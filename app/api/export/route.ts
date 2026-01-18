@@ -1,7 +1,6 @@
 import { env } from '@/env';
 import { parseRecentYears } from '@/features/resume';
 import { NextRequest } from 'next/server';
-import puppeteer from 'puppeteer';
 
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
@@ -17,9 +16,29 @@ export const GET = async (request: NextRequest) => {
       ? `${protocol}://${host}?${queryString}`
       : `${protocol}://${host}`;
 
-    const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    });
+    // Conditional browser setup for local vs serverless
+    const browser = await (async () => {
+      if (env.NODE_ENV === 'production') {
+        // Production: Use puppeteer-core with @sparticuz/chromium
+        const puppeteerCore = (await import('puppeteer-core')).default;
+        const chromium = (await import('@sparticuz/chromium')).default;
+
+        return puppeteerCore.launch({
+          args: chromium.args,
+          executablePath: await chromium.executablePath(),
+          headless: true,
+        });
+      } else {
+        // Local dev: Use regular puppeteer with bundled Chrome
+        const puppeteer = (await import('puppeteer')).default;
+
+        return puppeteer.launch({
+          headless: true,
+          args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        });
+      }
+    })();
+
     const page = await browser.newPage();
 
     // Force dark mode

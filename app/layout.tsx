@@ -36,6 +36,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
         ) : (
           <div className="relative p-2 print:hidden">
             <div className="flex justify-start gap-2 overflow-x-auto overflow-y-hidden scroll-smooth md:justify-end md:overflow-x-visible">
+              <ExportButton />
               <RecentYearsFilter recentYearsOptions={recentYearsOptions} />
             </div>
             <div className="from-background pointer-events-none absolute top-0 right-0 h-full w-32 bg-linear-to-l to-transparent md:hidden" />
