@@ -8,6 +8,7 @@ import {
   getResume,
   parseRecentYears,
 } from '@/features/resume';
+import { notFound } from 'next/navigation';
 
 /**
  * Revalidate the page every 5 minutes
@@ -24,8 +25,10 @@ const Home = async ({ searchParams }: HomeProps) => {
 
   const recentYears = parseRecentYears(params.recentYears);
 
-  const { profile, experiences, learnings, developments, educations } =
-    await getResume(isDev);
+  const resume = await getResume(isDev);
+  if (!resume) return notFound();
+
+  const { profile, experiences, learnings, developments, educations } = resume;
 
   return (
     <main className="min-h-screen">

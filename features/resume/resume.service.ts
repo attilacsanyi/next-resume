@@ -14,9 +14,8 @@ export const getResume = async (preview = false) => {
   const activeResumeItem = data.resumeCollection?.items.find(
     item => item.isActive
   );
-  const validatedResume = activeResumeItem
-    ? validateResumeJSON(activeResumeItem.json)
-    : undefined;
 
-  return validatedResume;
+  if (!activeResumeItem?.json) return undefined;
+
+  return validateResumeJSON(activeResumeItem.json);
 };
