@@ -1,0 +1,5 @@
+[functions]
+  # This tells Netlify exactly where to find the Chromium binaries
+  included_files = ["node_modules/@sparticuz/chromium/bin/**"]
+  # Prevents the bundler from trying to 'minify' the binary
+  external_node_modules = ["@sparticuz/chromium", "puppeteer-core"]

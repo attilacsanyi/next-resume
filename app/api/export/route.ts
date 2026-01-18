@@ -25,8 +25,9 @@ export const GET = async (request: NextRequest) => {
 
         return puppeteerCore.launch({
           args: chromium.args,
-          executablePath: await chromium.executablePath(),
-          headless: true,
+          defaultViewport: chromium.defaultViewport,
+          executablePath: await chromium.executablePath(), // This finds the bin files we included
+          headless: chromium.headless,
         });
       } else {
         // Local dev: Use regular puppeteer with bundled Chrome
