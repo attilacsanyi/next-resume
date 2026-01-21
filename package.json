@@ -10,7 +10,9 @@
     "format": "prettier --write .",
     "ci": "npm run lint && npm run format",
     "codegen": "graphql-codegen --config codegen.ts --require dotenv/config",
-    "predev": "pnpm codegen"
+    "predev": "pnpm codegen",
+    "prepare": "husky",
+    "lint-staged": "lint-staged --config lint-staged.config.mjs"
   },
   "dependencies": {
     "@apollo/client": "3.12.7",
@@ -44,6 +46,8 @@
     "clsx": "2.1.1",
     "eslint": "9",
     "eslint-config-next": "16.0.10",
+    "husky": "9.1.7",
+    "lint-staged": "16.2.7",
     "postcss": "8",
     "prettier": "3.4.2",
     "prettier-plugin-organize-imports": "4.1.0",
